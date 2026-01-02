@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model MerchantApplication {
+  id           String   @id @default(cuid())
+  businessName String
+  businessType String
+  ownerName    String
+  email        String
+  phone        String
+  password     String
+  address      String   @db.Text
+  status       String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  otp          String?
+  otpExpires   DateTime?
+  isEmailVerified Boolean @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  merchant     Merchant?
+}
+
+model Merchant {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  password      String
+  businessName  String
+  ownerName     String
+  profilePicture String? @db.LongText
+  apiKey        String?  // Pakasir API Key
+  merchantId    String?  // Pakasir Merchant ID / Slug
+  applicationId String   @unique
+  application   MerchantApplication @relation(fields: [applicationId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  transactions  Transaction[]
+  withdrawals   Withdrawal[]
+}
+
+model Transaction {
+  id            String   @id @default(cuid())
+  orderId       String   @unique
+  amount        Int
+  method        String
+  status        String   @default("PENDING") // PENDING, SUCCESS, EXPIRED, CANCELLED
+  paymentNumber String?  @db.Text
+  merchantId    String
+  merchant      Merchant @relation(fields: [merchantId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Withdrawal {
+  id            String   @id @default(cuid())
+  amount        Int
+  bankName      String
+  accountName   String
+  accountNumber String
+  status        String   @default("PENDING") // PENDING, COMPLETED, REJECTED
+  merchantId    String
+  merchant      Merchant @relation(fields: [merchantId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
