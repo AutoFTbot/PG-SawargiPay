@@ -49,8 +49,8 @@ SawargiPay adalah platform payment gateway modern yang memungkinkan merchant unt
 
 1. **Clone Repository**
    ```bash
-   git clone https://github.com/username/sawargipay.git
-   cd sawargipay
+   git clone https://github.com/AutoFtbot/PG-SawargiPay.git
+   cd PG-SawargiPay
    ```
 
 2. **Install Dependencies**
@@ -90,6 +90,10 @@ SawargiPay adalah platform payment gateway modern yang memungkinkan merchant unt
    npm run dev
    ```
    Buka [http://localhost:3000](http://localhost:3000) di browser Anda.
+
+### 🌐 Deployment ke VPS
+
+Untuk panduan lengkap cara deploy ke VPS (Ubuntu/Debian) menggunakan Nginx dan PM2, silakan baca [Panduan Deployment](DEPLOYMENT.md).
 
 ## 📝 API Documentation
 
