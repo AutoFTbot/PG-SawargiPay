@@ -21,7 +21,7 @@ SawargiPay adalah platform payment gateway modern yang memungkinkan merchant unt
 - **Profile Management**: Kelola informasi bisnis dan API Key.
 
 ### 💳 Payment Integration
-- **QRIS Generation**: Integrasi dengan Pakasir API untuk pembuatan QRIS dinamis.
+- **QRIS Generation**: Integrasi pembuatan QRIS dinamis.
 - **Payment Status**: Pengecekan status pembayaran otomatis.
 - **Public Payment Page**: Halaman pembayaran yang user-friendly untuk pelanggan.
 
